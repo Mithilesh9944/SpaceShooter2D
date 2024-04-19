@@ -1,0 +1,52 @@
+package levels;
+import java.awt.Graphics;
+import static spaceShooter.Game.*;
+
+import entities.Player;
+import spaceShooter.Game;
+
+public class LevelManager {
+	private Game game;
+	private Player player;
+
+	private Background bg;
+	private EnemyManager enemyManager;
+	private BulletsManager bulletsManager;
+
+
+	/*-----------------Constructor where Initializing Objects of Required References of Class--------- */
+	public LevelManager(Game game) {
+		bg = new Background();
+		bulletsManager = new BulletsManager();
+		enemyManager = new EnemyManager(bulletsManager);
+		player=new Player(GAME_WIDTH/3,GAME_HEIGHT-48,(int)(64*SCALE),(int)(40*SCALE), bulletsManager);//Initial Position of Player Rocket
+	}
+
+	/*------------This Rendering All objects of Game --------------*/
+	public void draw(Graphics g) {
+		bg.render(g);//BackGround Image
+		bulletsManager.render(g);//To manage Bullets Positions
+		enemyManager.render(g);//To manage EnemyShip Positions
+		player.render(g);//To manage Player Positions
+	}
+
+	/*------------Updating positions of Objects of Game--------------*/
+	public void update() {
+		player.update(); //Player Moment.
+		enemyManager.update();//EnemyShip Moment.
+		bulletsManager.update();//Bullet Moment.
+	}
+
+	/*-----------For Focus Lost Of Window Positions-----------------*/
+	public void windowFocusLost() {
+		player.resetDirBooleans();
+	}
+
+	/*----------Getters For Player Class Object -------------------*/
+	public Player getPlayer() {
+		return player;
+	}
+
+
+	
+}
