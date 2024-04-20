@@ -9,7 +9,9 @@ import javax.imageio.ImageIO;
 //Class for load the images.....
 public class LoadSave {
 	
-	public static final String PLAYER_ATLUS= "smoke3.png";
+	public static final String UI_BACK_G = "bg.png";
+	public static final String  UI_TABLE = "menu_background.png";
+	public static final String  UI_BUTTON= "button_atlas.png";
 	public static final String BACKG_ATLUS= "black.png";
 	public static final String BULLETS_ATLUS= "bullet - Copy.png";
 	public static final String ENEMYSHIP_ATLUS = "greenbat.png";

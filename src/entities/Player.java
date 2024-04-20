@@ -35,7 +35,7 @@ public class Player extends Entity {
 	
 	public Player(float x, float y, int width, int height, BulletsManager bulletsManager) {
 		super(x,y,width, height);
-		loadAnimation();
+		//loadAnimation();
 
 		this.bulletsManager = bulletsManager;
 
@@ -116,15 +116,15 @@ public class Player extends Entity {
 		
 
 	/*---------------Animation of Rocket BackSide Fire ---------------------*/
-	private void loadAnimation() {
-		smoke=LoadSave.GetSpriteAtlas(LoadSave.PLAYER_ATLUS);
-		animation = new BufferedImage[2][3];
-		for(int i=0;i<animation.length;i++) {
-			for(int j=0;j<animation[i].length;j++) {
-				animation[i][j]= smoke.getSubimage(j*190, i*200, 190, 200);
-			}
-		}
-	}
+//	private void loadAnimation() {
+//		smoke=LoadSave.GetSpriteAtlas(LoadSave.PLAYER_ATLUS);
+//		animation = new BufferedImage[2][3];
+//		for(int i=0;i<animation.length;i++) {
+//			for(int j=0;j<animation[i].length;j++) {
+//				animation[i][j]= smoke.getSubimage(j*190, i*200, 190, 200);
+//			}
+//		}
+//	}
 	
 	/*------------- Bullet Reload-----------------*/
 	public void handleShoot() {

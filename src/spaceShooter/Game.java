@@ -6,6 +6,7 @@ package spaceShooter;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
+import UI.Menu;
 import levels.LevelManager;
 import utilz.LoadSave;
 
@@ -13,6 +14,8 @@ public class Game implements Runnable {
 	private GameWindow gameWindow;
 	private GamePanel gamepanel;
 	private Thread gameThread;
+
+
 
 	private final int FPS_SET=120;
 	private final int UPS_SET=200;
@@ -28,17 +31,26 @@ public class Game implements Runnable {
 	public static final int GAME_WIDTH=TILES_SIZE*TILES_IN_WIDTH;
 	public static final int GAME_HEIGHT=TILES_SIZE*TILES_IN_HEIGHT;
 
+	private Menu menu;
+	public static enum gameState{MENU, GAME};
+	public static gameState state = gameState.MENU;
+
+
+
 	public Game() {
 		initClasses();
 		gamepanel=new GamePanel(this);
 		gameWindow=new GameWindow(gamepanel);
-
 		gamepanel.requestFocus();
 
 		startGameLoop();
 	}
 	private void initClasses() {
+		backGroundImage = LoadSave.GetSpriteAtlas(LoadSave.UI_BACK_G);
+		menu = new Menu();
 		levelManager=new LevelManager(this);
+
+
 	}
 
 	private void startGameLoop() {
@@ -84,11 +96,24 @@ public class Game implements Runnable {
 	}
 
 	private void update() {
-		levelManager.update();
+		if (state == gameState.GAME) {
+			levelManager.update();
+		} else if (state == gameState.MENU) {
+			//menu.update;
+		}
 	}
+
 	public void render(Graphics g) {
-		levelManager.draw(g);
+		g.drawImage(backGroundImage,0,0,null);
+		if(state == gameState.GAME) {
+			levelManager.draw(g);
+		}else if (state == gameState.MENU){
+			menu.render(g);
+
+		}
+
 	}
+
 	public LevelManager getLevelManager() {
 		return levelManager;
 	}

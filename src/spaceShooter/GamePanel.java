@@ -7,7 +7,6 @@ import static spaceShooter.Game.GAME_WIDTH;
 import java.awt.Graphics;
 
 import javax.swing.JPanel;
-
 import inputs.KeyBoardinputs;
 import inputs.MouseInputs;
 

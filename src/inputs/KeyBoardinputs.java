@@ -2,6 +2,7 @@ package inputs;
 
 import java.awt.event.KeyEvent;
 
+import spaceShooter.Game;
 import spaceShooter.GamePanel;
 import java.awt.event.KeyListener;
 
@@ -19,22 +20,25 @@ public class KeyBoardinputs implements KeyListener {
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		switch (e.getKeyCode()){
-		case KeyEvent.VK_W:
-			   gamePanel.getGame().getLevelManager().getPlayer().setUp(true);
-			   break;
-	    case KeyEvent.VK_A:
-	    	   gamePanel.getGame().getLevelManager().getPlayer().setLeft(true);
-	    	   break;
-        case KeyEvent.VK_S:
-        	   gamePanel.getGame().getLevelManager().getPlayer().setDown(true);
-        	   break;
-        case KeyEvent.VK_D:
-	            gamePanel.getGame().getLevelManager().getPlayer().setRight(true);
-		        break;
-        case KeyEvent.VK_SPACE:
-        		gamePanel.getGame().getLevelManager().getPlayer().handleShoot();
-        		break;
+		 if(gamePanel.getGame().state == Game.gameState.GAME){
+		switch (e.getKeyCode()) {
+			case KeyEvent.VK_W:
+				gamePanel.getGame().getLevelManager().getPlayer().setUp(true);
+				break;
+			case KeyEvent.VK_A:
+				gamePanel.getGame().getLevelManager().getPlayer().setLeft(true);
+				break;
+			case KeyEvent.VK_S:
+				gamePanel.getGame().getLevelManager().getPlayer().setDown(true);
+				break;
+			case KeyEvent.VK_D:
+				gamePanel.getGame().getLevelManager().getPlayer().setRight(true);
+				break;
+			case KeyEvent.VK_SPACE:
+				gamePanel.getGame().getLevelManager().getPlayer().handleShoot();
+				break;
+		}
+
 	    }
 	}
 
@@ -56,6 +60,7 @@ public class KeyBoardinputs implements KeyListener {
         case KeyEvent.VK_SPACE:
     		gamePanel.getGame().getLevelManager().getPlayer().handleShoot();
     		break;
+
        
 		}
 	}

@@ -11,6 +11,7 @@ public class EnemyManager {
 	private ArrayList<EnemyShip> enemyShips;
 	private ArrayList<Point> arrayCoordinates;
 	private BulletsManager bulletsManager;
+	private int countDown =18;
 	
 	private int currentState[][];
 	
@@ -47,6 +48,9 @@ public class EnemyManager {
 		for (int i=0;i<enemyShips.size();i++) {
 			if (enemyShips.get(i).handleAttack()) {
 				enemyShips.remove(i);
+				countDown -=1;
+				if(countDown==0)updateLevel();
+
 				currentState[arrayCoordinates.get(i).x][arrayCoordinates.get(i).y] = 0;
 			}
 		}
@@ -55,7 +59,11 @@ public class EnemyManager {
 			enemyShips.get(i).update();
 		}
 	}
-	
+
+	private void updateLevel() {
+		Game.state= Game.gameState.MENU;
+	}
+
 	public void render(Graphics g) {
 		for (int i=0;i<enemyShips.size();i++) {
 			enemyShips.get(i).render(g);
