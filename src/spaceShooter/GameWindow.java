@@ -24,9 +24,9 @@ public class GameWindow {
 		
 		jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//To set Exit click to  close
 		jframe.add(gamepanel);//jframe adding gamePanel.
-		jframe.setResizable(true);//for cusomize gameWindow by Users.
+		jframe.setResizable(true);//for customize gameWindow by Users.
 		jframe.pack();
-		jframe.setVisible(true);//Intially visibility is false we have to give pass 'true' for visibility of window.
+		jframe.setVisible(true);//Initially visibility is false we have to give pass 'true' for visibility of window.
 
 		/*-------All about focus of game Window------*/
 		jframe.addWindowFocusListener(new WindowFocusListener() {

@@ -6,7 +6,7 @@ import java.awt.image.BufferedImage;
 import levels.BulletsManager;
 import spaceShooter.Game;
 import utilz.LoadSave;
-
+/*This Class is  Managing EnemyShip creation and Updation */
 public class EnemyShip extends Entity {
 	private BufferedImage enemyShip;
 
@@ -19,22 +19,15 @@ public class EnemyShip extends Entity {
 		enemyShip = LoadSave.GetSpriteAtlas(LoadSave.ENEMYSHIP_ATLUS);
 		width = enemyShip.getWidth();
 		height = enemyShip.getHeight();
-
 		moveToRight = flag;
 		this.bulletsManager = bulletsManager;
-
-		if (flag) {
-			offset = (float) Game.TILES_SIZE /2;
-		} else {
-			offset = (float) Game.TILES_SIZE /2;
-		}
-
+		offset = (float) Game.TILES_SIZE /2;
 	}
 
 	public void render(Graphics g) {
 		g.drawImage(enemyShip, (int)(x+offset), (int)y, null);
 	}
-
+	/*-----This Method updating Movement of EnemyShip---------------*/
 	public void update() {
 		if (offset <= 0) {
 			moveToRight = true;
@@ -50,6 +43,7 @@ public class EnemyShip extends Entity {
 
 	}
 
+	/* This Method Checking collision of 'Bullet' with 'EnemyShip'  */
 	 public boolean handleAttack() {
 		for (int i=0;i<bulletsManager.getBullets().size();i++) {
 			int px = bulletsManager.getBullets().get(i).getX();

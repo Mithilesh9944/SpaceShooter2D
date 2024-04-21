@@ -15,8 +15,9 @@ public class EnemyManager {
 	private BulletsManager bulletsManager;
 	private int LevelOneCountDown =18;//LevelOneCountDown.
 	
-	private int currentState[][];
-	
+	private int currentState[][];//for current Executing Level.
+
+	/*----------Object Instantiation----------*/
 	EnemyManager(BulletsManager bulletsManager) {
 		enemyShips = new ArrayList<>();
 		arrayCoordinates = new ArrayList<>();
@@ -26,7 +27,7 @@ public class EnemyManager {
 	}
 
 
-	/*-------------  --------------*/
+	/*-------------Level -1 --------------*/
 	private void initializeArray() {
 		for (int i=1;i<=Constants.EnemyConstants.EnemyLvlOneGrid.length;i++) {
 			for (int j=1;j<=Constants.EnemyConstants.EnemyLvlOneGrid[0].length;j++) {
@@ -49,8 +50,8 @@ public class EnemyManager {
 	public void update() {
 		for (int i=0;i<enemyShips.size();i++) {
 			if (enemyShips.get(i).handleAttack()) {
-				enemyShips.remove(i);
-				LevelOneCountDown -=1;
+				enemyShips.remove(i);//
+				LevelOneCountDown -=1;//Count Down For current State.
 				if(LevelOneCountDown ==0){ updateLevel(); }
 				currentState[arrayCoordinates.get(i).x][arrayCoordinates.get(i).y] = 0;
 			}

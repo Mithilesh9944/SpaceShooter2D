@@ -6,7 +6,9 @@ import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
 import utilz.LoadSave;
-//TO check Collision for Player Rocket......
+/*TO check Collision for Player Rocket......
+ Note) At Present we're not Using This class but, In future it will be used.
+*/
 public abstract class Entity {
     protected float x,y;
     protected int width,height;

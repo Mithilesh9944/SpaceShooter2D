@@ -13,11 +13,18 @@ public class Background {
         bg = LoadSave.GetSpriteAtlas("space2.jpg");
     }
 
+
     void render(Graphics g) {
         for (int i=0;i<Game.GAME_WIDTH;i+=bg.getWidth()) {
             for (int j=0;j<Game.GAME_HEIGHT;j+=bg.getHeight()) {
                 g.drawImage(bg, i, j, null);
             }
         }
+        Font font = new Font("caslon", Font.BOLD, 20);
+        g.setFont(font);
+        g.setColor(Color.YELLOW);
+        g.drawString("Press Enter to Pause",Game.GAME_WIDTH/10-30,50);
     }
+
+
 }

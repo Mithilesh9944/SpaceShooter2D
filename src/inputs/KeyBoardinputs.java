@@ -24,7 +24,7 @@ public class KeyBoardinputs implements KeyListener {
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		 if(gamePanel.getGame().state == Game.gameState.GAME){
+		 if(Game.state == Game.gameState.GAME){
 		switch (e.getKeyCode()) {
 			case KeyEvent.VK_W:
 				gamePanel.getGame().getLevelManager().getPlayer().setUp(true);
@@ -41,6 +41,13 @@ public class KeyBoardinputs implements KeyListener {
 			case KeyEvent.VK_SPACE:
 				gamePanel.getGame().getLevelManager().getPlayer().handleShoot();
 				break;
+			case KeyEvent.VK_ENTER:
+				Game.state = Game.gameState.MENU;
+				break;
+			case KeyEvent.VK_BACK_SPACE:
+				System.exit(0);
+				break;
+			default: break;
 		}
 
 	    }

@@ -47,38 +47,29 @@ public class Player extends Entity {
 	public void update() {
 		updatePos();
 		//updateHitbox();
-		updateAnimationTick();
+		//updateAnimationTick();
 		setAnimation();
-	    
-		// updating position of bullets
+		bulletReloadTime();
+	}
+
+	//Manages Bullet Reload time
+	private void bulletReloadTime() {
 		if (bulletCooldown == 0) {
 			canShoot = true;
 		} else {
 			bulletCooldown--;
 		}
 	}
-	
-	
+
+
 	//-----------For Rendering Main Rocket/Bullet-----------------//
 	
 	
 	public void render(Graphics g) {
 	 //  drawHitbox(g);
 		g.drawImage(imgMain, (int)x, (int)y, imgMain.getHeight(),imgMain.getWidth(), null);//PlayerRocket
-	  //g.drawImage(animation[PlayerAction][aniIndex], (int)x+29, (int)y+66, 45,60,null);//
 	}
 
-	//---------------------- For Update Rocket BackSide Fire By Indexing----------------//
-  	public void updateAnimationTick() {
-	aniTick++;
-	if(aniTick>=aniSpeed) {
-		aniTick=0;
-		aniIndex++;
-		if(aniIndex>=3)
-			aniIndex =1;
-		}
-	}
-  	
 	private void setAnimation() {
 		PlayerAction=RUNNING;
 	}
@@ -164,14 +155,25 @@ public class Player extends Entity {
 		this.left = left;
 	}
 
+	//---------------------- For Update Rocket BackSide Fire By Indexing----------------//
+	/* public void updateAnimationTick() {
+		aniTick++;
+		if(aniTick>=aniSpeed) {
+			aniTick=0;
+			aniIndex++;
+			if(aniIndex>=3)
+				aniIndex =1;
+		}
+	}*/
+
 	/*---------------Animation of Rocket BackSide Fire ---------------------*/
-//	private void loadAnimation() {
-//		smoke=LoadSave.GetSpriteAtlas(LoadSave.PLAYER_ATLUS);
-//		animation = new BufferedImage[2][3];
-//		for(int i=0;i<animation.length;i++) {
-//			for(int j=0;j<animation[i].length;j++) {
-//				animation[i][j]= smoke.getSubimage(j*190, i*200, 190, 200);
-//			}
-//		}
-//	}
+	/*private void loadAnimation() {
+		smoke=LoadSave.GetSpriteAtlas(LoadSave.PLAYER_ATLUS);
+		animation = new BufferedImage[2][3];
+		for(int i=0;i<animation.length;i++) {
+			for(int j=0;j<animation[i].length;j++) {
+				animation[i][j]= smoke.getSubimage(j*190, i*200, 190, 200);
+			}
+		}
+	} */
 }
