@@ -42,7 +42,7 @@ public class LevelManager {
 		player.resetDirBooleans();
 	}
 
-	/*----------Getters For Player Class Object -------------------*/
+	/*----------Encapsulations (private fields with public getters/setter) -------------------*/
 	public Player getPlayer() {
 		return player;
 	}

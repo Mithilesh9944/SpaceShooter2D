@@ -15,11 +15,10 @@ import utilz.LoadSave;
 public class Player extends Entity {
 
 
-	//by Using Concept of abstraction-----> We declared Variables as private.
+	//by Using Concept of Abstraction (We declared Variables as private).
 	private BufferedImage imgMain,img,subImg,smoke;
 	private int PlayerAction=IDLE;
 	private boolean up,down,right,left,flag;
-	
 	private BufferedImage[][] animation;
 	private int aniTick,aniIndex,aniSpeed=10;
 	private float playerSpeed = 4.0f;
@@ -28,7 +27,7 @@ public class Player extends Entity {
 
 	private boolean canShoot;
 	private int bulletCooldown;
-	private final int COOLDOWN = 50;
+	private final int COOLDOWN = 50;//Reload time
 	
 	
 	
@@ -101,7 +100,7 @@ public class Player extends Entity {
 			y+=playerSpeed;
 		}
 
-		/* ---------------Method For  Rocket Positions Updation/Limitation ---------------*/
+		/* ---------------Method For  Rocket Positions Updation /Limitation ---------------*/
 		if(x<0)
 			x=0;
 		else if (x> Game.GAME_WIDTH-imgMain.getWidth())
@@ -113,19 +112,6 @@ public class Player extends Entity {
 		
 	}
 
-		
-
-	/*---------------Animation of Rocket BackSide Fire ---------------------*/
-//	private void loadAnimation() {
-//		smoke=LoadSave.GetSpriteAtlas(LoadSave.PLAYER_ATLUS);
-//		animation = new BufferedImage[2][3];
-//		for(int i=0;i<animation.length;i++) {
-//			for(int j=0;j<animation[i].length;j++) {
-//				animation[i][j]= smoke.getSubimage(j*190, i*200, 190, 200);
-//			}
-//		}
-//	}
-	
 	/*------------- Bullet Reload-----------------*/
 	public void handleShoot() {
 		if (canShoot) {
@@ -135,7 +121,9 @@ public class Player extends Entity {
 		}
 	}
 	
-	
+	/*
+	 	resetDirBooleans()---> No movement until we do not press any key of A/S/W/D.
+	*/
 	public void resetDirBooleans() {
 		left=false;
 		right=false;
@@ -143,7 +131,7 @@ public class Player extends Entity {
 		down=false;
 	}
 	
-	/*-------------------Setter'S and Getter's--------------------------*/
+	/*-------------------Encapsulations (private fields with public getters/setter)--------------------------*/
 	public Boolean getUp() {
 		return up;
 	}
@@ -175,4 +163,15 @@ public class Player extends Entity {
 	public void setLeft(Boolean left) {
 		this.left = left;
 	}
+
+	/*---------------Animation of Rocket BackSide Fire ---------------------*/
+//	private void loadAnimation() {
+//		smoke=LoadSave.GetSpriteAtlas(LoadSave.PLAYER_ATLUS);
+//		animation = new BufferedImage[2][3];
+//		for(int i=0;i<animation.length;i++) {
+//			for(int j=0;j<animation[i].length;j++) {
+//				animation[i][j]= smoke.getSubimage(j*190, i*200, 190, 200);
+//			}
+//		}
+//	}
 }

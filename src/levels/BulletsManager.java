@@ -29,12 +29,15 @@ public class BulletsManager {
             bullets.get(i).render(g);
         }
     }
-
+    /*
+        addBullet()--> this method allows adding a new bullet to the game or simulation at the specified position (x, y).
+    */
     public void addBullet(float x, float y) {
         Bullet tmp = new Bullet(x, y, 0, 0);
         bullets.add(tmp);
     }
 
+    /*---------Encapsulations (private fields with public getters/setter)----------*/
     public ArrayList<Bullet> getBullets() {
         return bullets;
     }

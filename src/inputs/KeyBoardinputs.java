@@ -5,6 +5,10 @@ import java.awt.event.KeyEvent;
 import spaceShooter.Game;
 import spaceShooter.GamePanel;
 import java.awt.event.KeyListener;
+/*KeyListener--->The listener interface for receiving keyboard events (keystrokes).
+ 				  The class that is interested in processing a keyboard event either implements this interface
+ 				  or extends the abstract KeyAdapter class (overriding only the methods of interest).
+ */
 
 public class KeyBoardinputs implements KeyListener {
 

@@ -1,5 +1,7 @@
 package levels;
-
+/*
+  This class is Managing EnemyShip's positions , collision with bullet .
+*/
 import java.awt.*;
 import java.util.ArrayList;
 
@@ -8,10 +10,10 @@ import spaceShooter.Game;
 import utilz.Constants;
 
 public class EnemyManager {
-	private ArrayList<EnemyShip> enemyShips;
-	private ArrayList<Point> arrayCoordinates;
+	private ArrayList<EnemyShip> enemyShips;//Container for EnemyShip.
+	private ArrayList<Point> arrayCoordinates;//Container for Coordinates.
 	private BulletsManager bulletsManager;
-	private int countDown =18;
+	private int LevelOneCountDown =18;//LevelOneCountDown.
 	
 	private int currentState[][];
 	
@@ -48,9 +50,8 @@ public class EnemyManager {
 		for (int i=0;i<enemyShips.size();i++) {
 			if (enemyShips.get(i).handleAttack()) {
 				enemyShips.remove(i);
-				countDown -=1;
-				if(countDown==0)updateLevel();
-
+				LevelOneCountDown -=1;
+				if(LevelOneCountDown ==0){ updateLevel(); }
 				currentState[arrayCoordinates.get(i).x][arrayCoordinates.get(i).y] = 0;
 			}
 		}
