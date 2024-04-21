@@ -3,7 +3,7 @@ package spaceShooter;
  *      And Deciding Size of Game's Height , Width.
  *      This class will.
   */
-import java.awt.Graphics;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 
 import UI.Menu;
@@ -28,7 +28,7 @@ public class Game implements Runnable {
 
 	/*-------------Instance Variables for Deciding Game Window-------------*/
 	public static final int TILES_DEFAULT_SIZE=80;//One Tiles Size.
-	public static final float SCALE=1.0f;//Scales
+	public static final float SCALE=1.04f;//Scales
 	public static final int TILES_IN_WIDTH=12;// Each Tiles width
 	public static final int TILES_IN_HEIGHT=10;// Each Tiles Height.
 	public static final int TILES_SIZE=(int)(TILES_DEFAULT_SIZE*SCALE);//Actual Size of Tiles.
@@ -39,9 +39,9 @@ public class Game implements Runnable {
 
 	/*
 		----------------Enum for Game States---------------
-	 	enum --->Java, an enum, short for enumeration, is a special data type used to define a set of named constants.
-	          These constants represent a fixed number of possible values for a variable.
-	          enum is a special 'class' that represents a group of constants (enumerated values).
+	 enum --->	Java, an enum, short for enumeration, is a special data type used to define a set of named constants.
+	          	These constants represent a fixed number of possible values for a variable.
+	          	enum is a special 'class' that represents a group of constants (enumerated values).
 	*/
 	public static enum gameState{MENU, GAME};//Constants for Game Modes.
 	public static gameState state = gameState.MENU;//Initially Game Mode is MENU.

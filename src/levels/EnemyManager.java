@@ -13,21 +13,25 @@ public class EnemyManager {
 	private ArrayList<EnemyShip> enemyShips;//Container for EnemyShip.
 	private ArrayList<Point> arrayCoordinates;//Container for Coordinates.
 	private BulletsManager bulletsManager;
+	private int maxLevel= 2;
+	private  int currentLevelEnemy ;
 	private int LevelOneCountDown =18;//LevelOneCountDown.
-	
-	private int currentState[][];
-	
+	private int LevelTwoCountDown = 23;
+	private int currentState[][];//for current Executing Level.
+
+	/*----------Object Instantiation----------*/
 	EnemyManager(BulletsManager bulletsManager) {
 		enemyShips = new ArrayList<>();
 		arrayCoordinates = new ArrayList<>();
 		this.bulletsManager = bulletsManager;
-		currentState = new int[Constants.EnemyConstants.EnemyLvlOneGrid.length][Constants.EnemyConstants.EnemyLvlOneGrid[0].length];
-		initializeArray();
+		LevelOne();
 	}
 
 
-	/*-------------  --------------*/
-	private void initializeArray() {
+	/*-------------Level -1 --------------*/
+	private void LevelOne() {
+		currentLevelEnemy=LevelOneCountDown;
+		currentState = new int[Constants.EnemyConstants.EnemyLvlOneGrid.length][Constants.EnemyConstants.EnemyLvlOneGrid[0].length];
 		for (int i=1;i<=Constants.EnemyConstants.EnemyLvlOneGrid.length;i++) {
 			for (int j=1;j<=Constants.EnemyConstants.EnemyLvlOneGrid[0].length;j++) {
 				if (Constants.EnemyConstants.EnemyLvlOneGrid[i-1][j-1] == 1) {
@@ -45,14 +49,30 @@ public class EnemyManager {
 			}
 		}
 	}
+	private void LevelTwo() {
+		currentLevelEnemy=LevelTwoCountDown;
+		currentState = new int[Constants.EnemyConstants.EnemyLvlTwoGrid.length][Constants.EnemyConstants.EnemyLvlTwoGrid[0].length];
+		for (int i=1;i<=Constants.EnemyConstants.EnemyLvlTwoGrid.length;i++) {
+			for (int j=1;j<=Constants.EnemyConstants.EnemyLvlTwoGrid[0].length;j++) {
+				if (Constants.EnemyConstants.EnemyLvlTwoGrid[i-1][j-1] == 1) {
+					currentState[i-1][j-1] = Constants.EnemyConstants.EnemyLvlTwoGrid[i-1][j-1];
+					EnemyShip e = new EnemyShip(Game.TILES_SIZE*j, Game.TILES_SIZE*i, 0, 0, true, bulletsManager);
+
+					enemyShips.add(e);
+					arrayCoordinates.add(new Point(i-1, j-1));
+				}
+			}
+		}
+	}
 	
 	public void update() {
 		for (int i=0;i<enemyShips.size();i++) {
 			if (enemyShips.get(i).handleAttack()) {
-				enemyShips.remove(i);
-				LevelOneCountDown -=1;
-				if(LevelOneCountDown ==0){ updateLevel(); }
+				enemyShips.remove(i);//
+				currentLevelEnemy-=1;//Count Down For current State.
+				if( currentLevelEnemy==0){ updateLevel(); }
 				currentState[arrayCoordinates.get(i).x][arrayCoordinates.get(i).y] = 0;
+
 			}
 		}
 
@@ -62,7 +82,8 @@ public class EnemyManager {
 	}
 
 	private void updateLevel() {
-		Game.state= Game.gameState.MENU;
+		if(--maxLevel==0){System.exit(0);}
+		else LevelTwo();
 	}
 
 	public void render(Graphics g) {

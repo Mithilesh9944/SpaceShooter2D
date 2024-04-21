@@ -1,5 +1,7 @@
 package levels;
 import java.awt.Graphics;
+import java.util.logging.Level;
+
 import static spaceShooter.Game.*;
 
 import entities.Player;
@@ -13,7 +15,7 @@ public class LevelManager {
 	private EnemyManager enemyManager;
 	private BulletsManager bulletsManager;
 
-
+	public LevelManager(){}
 	/*-----------------Constructor where Initializing Objects of Required References of Class--------- */
 	public LevelManager(Game game) {
 		bg = new Background();
@@ -21,6 +23,7 @@ public class LevelManager {
 		enemyManager = new EnemyManager(bulletsManager);
 		player=new Player(GAME_WIDTH/3,GAME_HEIGHT-48,(int)(64*SCALE),(int)(40*SCALE), bulletsManager);//Initial Position of Player Rocket
 	}
+
 
 	/*------------This Rendering All objects of Game --------------*/
 	public void draw(Graphics g) {

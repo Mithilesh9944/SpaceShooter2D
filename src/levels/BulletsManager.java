@@ -12,8 +12,8 @@ public class BulletsManager {
         bullets = new ArrayList<>();
     }
 
+    /*--- This method manages Bullet positions wrt to game frame and destroys when bullet passes out of the window frame  */
     public void update() {
-        // updating position of bullets
         for (int i=0;i<bullets.size();i++) {
             if (bullets.get(i).getY() > 0)
                 bullets.get(i).update();

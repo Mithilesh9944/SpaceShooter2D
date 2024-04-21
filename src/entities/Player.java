@@ -1,8 +1,5 @@
 package entities;
 
-
-import static utilz.Constants.PlayerConstants.IDLE;
-
 import static utilz.Constants.PlayerConstants.RUNNING;
 
 import java.awt.Graphics;
@@ -16,18 +13,14 @@ public class Player extends Entity {
 
 
 	//by Using Concept of Abstraction (We declared Variables as private).
-	private BufferedImage imgMain,img,subImg,smoke;
-	private int PlayerAction=IDLE;
+	private BufferedImage imgMain;
 	private boolean up,down,right,left,flag;
-	private BufferedImage[][] animation;
-	private int aniTick,aniIndex,aniSpeed=10;
-	private float playerSpeed = 4.0f;
-
+	protected float playerSpeed = 4.0f,playerHeight;
 	private BulletsManager bulletsManager;
 
 	private boolean canShoot;
 	private int bulletCooldown;
-	private final int COOLDOWN = 50;//Reload time
+	private final int COOLDOWN = 40;//Reload time
 	
 	
 	
@@ -41,48 +34,36 @@ public class Player extends Entity {
 		canShoot = true;
 		bulletCooldown = 0;
 		imgMain = LoadSave.GetSpriteAtlas(LoadSave.MAIN_PLAYER);
+		playerHeight = imgMain.getHeight();
 		
 	}
 	/*--------------------- Updating On Game Loop----------------------*/
 	public void update() {
 		updatePos();
 		//updateHitbox();
-		updateAnimationTick();
-		setAnimation();
-	    
-		// updating position of bullets
+		//updateAnimationTick();
+		//setAnimation();
+		bulletReloadTime();
+	}
+
+	//Manages Bullet Reload time
+	private void bulletReloadTime() {
 		if (bulletCooldown == 0) {
 			canShoot = true;
 		} else {
 			bulletCooldown--;
 		}
 	}
-	
-	
+
+
 	//-----------For Rendering Main Rocket/Bullet-----------------//
 	
 	
 	public void render(Graphics g) {
-	 //  drawHitbox(g);
-		g.drawImage(imgMain, (int)x, (int)y, imgMain.getHeight(),imgMain.getWidth(), null);//PlayerRocket
-	  //g.drawImage(animation[PlayerAction][aniIndex], (int)x+29, (int)y+66, 45,60,null);//
+	   // drawHitbox(g);
+		g.drawImage(imgMain, (int)x, (int)y, imgMain.getWidth(),imgMain.getHeight(), null);//PlayerRocket
 	}
 
-	//---------------------- For Update Rocket BackSide Fire By Indexing----------------//
-  	public void updateAnimationTick() {
-	aniTick++;
-	if(aniTick>=aniSpeed) {
-		aniTick=0;
-		aniIndex++;
-		if(aniIndex>=3)
-			aniIndex =1;
-		}
-	}
-  	
-	private void setAnimation() {
-		PlayerAction=RUNNING;
-	}
-		
 	 // Class's Method ---->Player Rockets Positions of where it can't Move..
 	private void updatePos() {
 		if(!left && !right && !up && !down)
@@ -164,14 +145,29 @@ public class Player extends Entity {
 		this.left = left;
 	}
 
+	//---------------------- For Update Rocket BackSide Fire By Indexing----------------//
+	/* public void updateAnimationTick() {
+		aniTick++;
+		if(aniTick>=aniSpeed) {
+			aniTick=0;
+			aniIndex++;
+			if(aniIndex>=3)
+				aniIndex =1;
+		}
+	}
+	private void setAnimation() {
+		PlayerAction=RUNNING;
+	}
+	*/
+
 	/*---------------Animation of Rocket BackSide Fire ---------------------*/
-//	private void loadAnimation() {
-//		smoke=LoadSave.GetSpriteAtlas(LoadSave.PLAYER_ATLUS);
-//		animation = new BufferedImage[2][3];
-//		for(int i=0;i<animation.length;i++) {
-//			for(int j=0;j<animation[i].length;j++) {
-//				animation[i][j]= smoke.getSubimage(j*190, i*200, 190, 200);
-//			}
-//		}
-//	}
+	/*private void loadAnimation() {
+		smoke=LoadSave.GetSpriteAtlas(LoadSave.PLAYER_ATLUS);
+		animation = new BufferedImage[2][3];
+		for(int i=0;i<animation.length;i++) {
+			for(int j=0;j<animation[i].length;j++) {
+				animation[i][j]= smoke.getSubimage(j*190, i*200, 190, 200);
+			}
+		}
+	} */
 }
