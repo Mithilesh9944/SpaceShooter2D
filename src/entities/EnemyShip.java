@@ -4,16 +4,15 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 import levels.BulletsManager;
-import levels.LevelManager;
 import spaceShooter.Game;
-import spaceShooter.GamePanel;
 import utilz.LoadSave;
 /*This Class is  Managing EnemyShip creation and Updation */
 public class EnemyShip extends Entity {
 	private BufferedImage enemyShip;
+
 	private boolean moveToRight;
 	private final BulletsManager bulletsManager;
-	private float xOffset,yOffset,enemySpeed;
+	private float offset;
 
 	public EnemyShip(float x, float y, int width, int height, boolean flag, BulletsManager bulletsManager) {
 		super(x, y, width, height);
@@ -22,30 +21,26 @@ public class EnemyShip extends Entity {
 		height = enemyShip.getHeight();
 		moveToRight = flag;
 		this.bulletsManager = bulletsManager;
-		xOffset = (float) Game.TILES_SIZE /2;
-		enemySpeed =0.05f;
-
+		offset = (float) Game.TILES_SIZE /2;
 	}
 
 	public void render(Graphics g) {
-		//drawHitbox(g);
-		g.drawImage(enemyShip, (int)(x+xOffset), (int)(y+yOffset),enemyShip.getWidth(),enemyShip.getHeight(), null);
+		g.drawImage(enemyShip, (int)(x+offset), (int)y, null);
 	}
 	/*-----This Method updating Movement of EnemyShip---------------*/
 	public void update() {
-		if (xOffset <= 0) {
+		if (offset <= 0) {
 			moveToRight = true;
-		} else if (xOffset >= Game.TILES_SIZE){
+		} else if (offset >= Game.TILES_SIZE){
 			moveToRight = false;
 		}
 
 		if (moveToRight) {
-			xOffset += 0.5f;
+			offset += 0.5f;
 		} else {
-			xOffset -= 0.5f;
+			offset -= 0.5f;
 		}
-		// enemyShip Updation in YDirection
-			//yOffset += enemySpeed;
+
 	}
 
 	/* This Method Checking collision of 'Bullet' with 'EnemyShip'  */
@@ -53,7 +48,7 @@ public class EnemyShip extends Entity {
 		for (int i=0;i<bulletsManager.getBullets().size();i++) {
 			int px = bulletsManager.getBullets().get(i).getX();
 			int py = bulletsManager.getBullets().get(i).getY();
-			if (px>=x && px<(x+enemyShip.getWidth()+xOffset) && py>=y && py<y+enemyShip.getHeight()) {
+			if (px>=x && px<(x+enemyShip.getWidth()+offset) && py>=y && py<y+enemyShip.getHeight()) {
 				bulletsManager.getBullets().remove(i);
 				return true;
 			}
