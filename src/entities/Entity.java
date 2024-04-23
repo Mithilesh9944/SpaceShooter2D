@@ -6,16 +6,13 @@ import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
 import utilz.LoadSave;
-/*TO check Collision for Player Rocket......
- Note) At Present we're not Using This class but, In future it will be used.
+/*---At present this class is used for getting current location of Subclass entity--
+   In Future we can also use for drawHitBox and handle collision.
 */
 public abstract class Entity {
     protected float x,y;
     protected int width,height;
     protected Rectangle hitBox;
-    protected BufferedImage temp;
-	protected BufferedImage enemyShip;
-    public Entity() {}
     public Entity(float x, float y,int width,int height) {
     	this.x=x;
     	this.y=y;

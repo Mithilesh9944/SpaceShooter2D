@@ -44,7 +44,8 @@ public class GamePanel extends JPanel {
 		
 	}
 
-	/*This paintComponent()-->
+	/*
+	This paintComponent()-->
 								method appears to override the paintComponent method inherited from a Swing or AWT component,
 	                            likely a JPanel, and it's used for custom painting.
 

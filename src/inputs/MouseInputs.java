@@ -10,7 +10,6 @@ import spaceShooter.Game;
 import spaceShooter.GamePanel;
 
 public class MouseInputs extends Menu implements MouseListener ,MouseMotionListener {
-
 	private GamePanel gamePanel;
 	public MouseInputs(GamePanel gamePanel) {
 		this.gamePanel=gamePanel;
@@ -28,13 +27,15 @@ public class MouseInputs extends Menu implements MouseListener ,MouseMotionListe
 		int yPos = e.getY();
 		//For PlayButton
 		if(xPos>= Game.GAME_WIDTH/3+height && xPos <=Game.GAME_WIDTH+width){
-			if(yPos>=250 && yPos<= 300){
+			if(yPos>= playButton.getY() && yPos<= playButton.getY()+height){
 				Game.state = Game.gameState.GAME;
-			}else if(yPos>=350 && yPos<=400){
+			}else if(yPos>=helpButton.getY() && yPos<= helpButton.getY()+height){
 				Help();
 				System.exit(1);
-			}else if(yPos>=450 && yPos<=500){
+			}else if(yPos>=quitButton.getY() && yPos<= quitButton.getY()+height && Game.state==Game.gameState.MENU){
 				System.exit(0);
+			}else if(yPos>=quitButton.getY() && yPos<= quitButton.getY()+height && Game.state==Game.gameState.RESUME){
+				Game.state =Game.gameState.MENU;
 			}
 
 		}

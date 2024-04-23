@@ -1,8 +1,9 @@
 package utilz;
 
 public class Constants {
-
+	/*-- At Present Directions & PlayerConstants Class are not in used. */
 	public static class Directions{
+
 		public static final int LEFT=0;
 		public static final int UP=1;
 		public static final int RIGHT=2;
@@ -23,6 +24,12 @@ public class Constants {
 			}
 		}
 	}
+	/*
+		------------ Level Creation of Game ------------------
+		1 ---> Enemy will be rendered that Position.
+		0 ---> Empty Position.
+
+	 */
 	public static class EnemyConstants{
 		public static final int EnemyLvlOneGrid[][] = new int[][]{
 			{1, 0, 1, 0, 1, 0, 1, 0, 1},
@@ -36,6 +43,13 @@ public class Constants {
 				{1, 0, 1, 0, 1, 1, 1, 0, 0},
 				{1, 0, 0, 0, 1, 1, 0, 1, 0},
 				{1, 0, 0, 0, 1, 1, 0, 0, 1}
+		};
+		public static final int EnemyLvlThreeGrid[][] = new int[][]{
+				{1, 0, 0, 1, 0, 0, 1, 0, 0,1},
+				{0, 1, 1, 0, 1, 1, 0, 1, 1,0},
+				{1, 0, 0, 1, 0, 0, 1, 0, 0,1},
+				{0, 1, 1, 0, 1, 1, 0, 1, 1,0},
+				{1, 0, 0, 1, 0, 0, 1, 0, 0,1}
 		};
 
 	}

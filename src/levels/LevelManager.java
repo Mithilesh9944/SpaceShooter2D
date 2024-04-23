@@ -6,13 +6,14 @@ import static spaceShooter.Game.*;
 
 import entities.Player;
 import spaceShooter.Game;
+import utilz.LoadSave;
 
 public class LevelManager {
 	private Game game;
 	private Player player;
 
 	private Background bg;
-	private EnemyManager enemyManager;
+	protected EnemyManager enemyManager;
 	private BulletsManager bulletsManager;
 
 	public LevelManager(){}
@@ -22,6 +23,9 @@ public class LevelManager {
 		bulletsManager = new BulletsManager();
 		enemyManager = new EnemyManager(bulletsManager);
 		player=new Player(GAME_WIDTH/3,GAME_HEIGHT-48,(int)(64*SCALE),(int)(40*SCALE), bulletsManager);//Initial Position of Player Rocket
+	}
+	public static void init(){
+
 	}
 
 

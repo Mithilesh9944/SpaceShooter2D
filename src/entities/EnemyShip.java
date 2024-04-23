@@ -9,23 +9,24 @@ import utilz.LoadSave;
 /*This Class is  Managing EnemyShip creation and Updation */
 public class EnemyShip extends Entity {
 	private BufferedImage enemyShip;
-
-	private boolean moveToRight;
+	public boolean moveToRight;
 	private final BulletsManager bulletsManager;
 	private float offset;
+	private float yOffset;
+	public boolean up,down;
+	public EnemyShip(float x, float y, int width, int height, boolean flag, BulletsManager bulletsManager, String AVTAR_NAME) {
 
-	public EnemyShip(float x, float y, int width, int height, boolean flag, BulletsManager bulletsManager) {
 		super(x, y, width, height);
-		enemyShip = LoadSave.GetSpriteAtlas(LoadSave.ENEMYSHIP_ATLUS);
-		width = enemyShip.getWidth();
-		height = enemyShip.getHeight();
-		moveToRight = flag;
+		enemyShip = LoadSave.GetSpriteAtlas(AVTAR_NAME);
+		this.width = width;
+		this.height = height;
+		moveToRight = flag;//Movement of Enemy
 		this.bulletsManager = bulletsManager;
 		offset = (float) Game.TILES_SIZE /2;
 	}
 
 	public void render(Graphics g) {
-		g.drawImage(enemyShip, (int)(x+offset), (int)y, null);
+		g.drawImage(enemyShip, (int)(x+offset), (int)(y+yOffset), width,height,null);
 	}
 	/*-----This Method updating Movement of EnemyShip---------------*/
 	public void update() {
@@ -34,12 +35,18 @@ public class EnemyShip extends Entity {
 		} else if (offset >= Game.TILES_SIZE){
 			moveToRight = false;
 		}
-
 		if (moveToRight) {
-			offset += 0.5f;
+			offset += 0.5f;//Right MoveMent.
 		} else {
-			offset -= 0.5f;
+			offset -= 0.5f;//Left MoveMent
 		}
+		/*if (offset <= 0) {
+			up=true;
+		} else if (offset >= Game.TILES_SIZE){
+			up = false;
+		}
+		if(up)yOffset+=0.4f;
+		else yOffset-=0.4f;*/
 
 	}
 
@@ -52,6 +59,7 @@ public class EnemyShip extends Entity {
 				bulletsManager.getBullets().remove(i);
 				return true;
 			}
+
 		}
 		return false;
 	}

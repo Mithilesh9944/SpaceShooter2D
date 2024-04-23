@@ -7,6 +7,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 
 import UI.Menu;
+import UI.Resume;
 import levels.LevelManager;
 import utilz.LoadSave;
 
@@ -17,6 +18,7 @@ public class Game implements Runnable {
 	private LevelManager levelManager;
 	private BufferedImage backGroundImage;
 	private Menu menu;
+	private Resume resume;
 
 
 
@@ -43,9 +45,8 @@ public class Game implements Runnable {
 	          	These constants represent a fixed number of possible values for a variable.
 	          	enum is a special 'class' that represents a group of constants (enumerated values).
 	*/
-	public static enum gameState{MENU, GAME};//Constants for Game Modes.
+	public enum gameState{MENU, GAME,RESUME,NEXT};//Constants for Game Modes.
 	public static gameState state = gameState.MENU;//Initially Game Mode is MENU.
-
 
 	/*--------------------Constructor---------------------*/
 	public Game() {
@@ -60,9 +61,8 @@ public class Game implements Runnable {
 	private void initClasses() {
 		backGroundImage = LoadSave.GetSpriteAtlas(LoadSave.UI_BACK_G);// For Menu BackGround.
 		menu = new Menu();//To Load Menu UI.
+		resume = new Resume();
 		levelManager=new LevelManager(this);// Calling Other Functionality of Game Which is Next of Our Game-Flow.
-
-
 	}
 
 	/*-----------------Creating & Starting Thread For Game---------------*/
@@ -115,8 +115,8 @@ public class Game implements Runnable {
 		//Condition Checking for Game State.
 		if (state == gameState.GAME) {
 			levelManager.update();//levelManager Which is Resposible for All other Steps of Game.
-		} else if (state == gameState.MENU) {
-			//menu.update;
+		} else if (state == gameState.RESUME) {
+
 		}
 	}
 
@@ -130,6 +130,8 @@ public class Game implements Runnable {
 		}else if (state == gameState.MENU){
 			menu.render(g);//Calling Menu render(g)
 
+		}else if(state==gameState.RESUME){
+			resume.render(g);
 		}
 
 	}

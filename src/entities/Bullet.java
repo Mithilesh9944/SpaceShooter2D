@@ -22,6 +22,7 @@ public class Bullet extends Entity {
 	public void update() {
 		y -= 1;
 	}
+	public void updateEnemyBullet(){y+=1;}
 
 	public int getX() {
 		return (int)x;

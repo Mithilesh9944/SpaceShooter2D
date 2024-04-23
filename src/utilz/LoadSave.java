@@ -14,8 +14,21 @@ public class LoadSave {
 	public static final String  UI_BUTTON= "button_atlas.png";
 	public static final String BACKG_ATLUS= "black.png";
 	public static final String BULLETS_ATLUS= "bullet - Copy.png";
-	public static final String ENEMYSHIP_ATLUS = "greenbat.png";
+	public static final String LEVEL_ONE = "greenbat.png";
 	public static final String MAIN_PLAYER = "player.png";
+	public static  final String LEVEL_TWO_ENEMY = "enemyBlack1.png";
+	public static  final String LEVEL_TWO = "playerShip1_orange.png";
+	public static  final String LEVEL_THREE_ENEMY = "enemyBlue1.png";
+	public static  final String LEVEL_THREE = "playerShip1_blue.png";
+	/*
+	public static  final String LEVEL_FOUR_ENEMY = "enemyGreen1.png";
+	public static  final String LEVEL_FOUR = "playerShip1_green.png";
+	public static  final String LEVEL_FIVE_ENEMY = "enemyRed1.png";
+	public static  final String LEVEL_FIVE = "playerShip1_red.png";
+
+	 */
+
+
 
 
 	/*Method to Upload */

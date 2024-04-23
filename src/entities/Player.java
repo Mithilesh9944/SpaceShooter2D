@@ -1,7 +1,5 @@
 package entities;
 
-import static utilz.Constants.PlayerConstants.RUNNING;
-
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
@@ -14,7 +12,7 @@ public class Player extends Entity {
 
 	//by Using Concept of Abstraction (We declared Variables as private).
 	private BufferedImage imgMain;
-	private boolean up,down,right,left,flag;
+	private boolean up,down,right,left;
 	protected float playerSpeed = 4.0f,playerHeight;
 	private BulletsManager bulletsManager;
 
@@ -28,25 +26,25 @@ public class Player extends Entity {
 	public Player(float x, float y, int width, int height, BulletsManager bulletsManager) {
 		super(x,y,width, height);
 		//loadAnimation();
-
 		this.bulletsManager = bulletsManager;
-
 		canShoot = true;
 		bulletCooldown = 0;
-		imgMain = LoadSave.GetSpriteAtlas(LoadSave.MAIN_PLAYER);
+		imgMain =LoadSave.GetSpriteAtlas(LoadSave.MAIN_PLAYER);
 		playerHeight = imgMain.getHeight();
 		
 	}
 	/*--------------------- Updating On Game Loop----------------------*/
 	public void update() {
 		updatePos();
-		//updateHitbox();
-		//updateAnimationTick();
-		//setAnimation();
 		bulletReloadTime();
+		/* Non Used Method calls will use in Future For.
+		updateHitbox();
+		updateAnimationTick();
+		setAnimation();
+		*/
 	}
 
-	//Manages Bullet Reload time
+	/*Manages Bullet Reload time*/
 	private void bulletReloadTime() {
 		if (bulletCooldown == 0) {
 			canShoot = true;
@@ -57,14 +55,12 @@ public class Player extends Entity {
 
 
 	//-----------For Rendering Main Rocket/Bullet-----------------//
-	
-	
 	public void render(Graphics g) {
 	   // drawHitbox(g);
 		g.drawImage(imgMain, (int)x, (int)y, imgMain.getWidth(),imgMain.getHeight(), null);//PlayerRocket
 	}
 
-	 // Class's Method ---->Player Rockets Positions of where it can't Move..
+	 /* Class's Method ---->Player Rockets Positions of where it can't Move..*/
 	private void updatePos() {
 		if(!left && !right && !up && !down)
 			return;
@@ -103,7 +99,7 @@ public class Player extends Entity {
 	}
 	
 	/*
-	 	resetDirBooleans()---> No movement until we do not press any key of A/S/W/D.
+	 	resetDirBooleans()---> No movement until we do not press any key of A/S/W/D or Starting Of The Game.
 	*/
 	public void resetDirBooleans() {
 		left=false;
@@ -113,34 +109,15 @@ public class Player extends Entity {
 	}
 	
 	/*-------------------Encapsulations (private fields with public getters/setter)--------------------------*/
-	public Boolean getUp() {
-		return up;
-	}
-
 	public void setUp(Boolean up) {
 		this.up = up;
 	}
-
-	public Boolean getDown() {
-		return down;
-	}
-
 	public void setDown(Boolean down) {
 		this.down = down;
 	}
-
-	public Boolean getRight() {
-		return right;
-	}
-
 	public void setRight(Boolean right) {
 		this.right = right;
 	}
-
-	public Boolean getLeft() {
-		return left;
-	}
-
 	public void setLeft(Boolean left) {
 		this.left = left;
 	}
